@@ -69,3 +69,4 @@ p employee_2.active
 manager.fire_all_employees
 p employee_1.active
 p employee_2.active
+
