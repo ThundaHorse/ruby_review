@@ -23,20 +23,22 @@
 
 
 class Employee 
-  # Read attributes and grab values without a defined method, returns specific value or item 
+  # Access instances or variables 
+  # Writers overrite an old attribute 
+  # Reader also called getter, writer also called setter 
   attr_reader :first, :last, :salary, :active
-  # Argument variables, data passing into the method 
-  def initialize(first, last, salary, active) 
-    @first = first 
-    @last = last 
-    @salary = salary 
-    @active = active 
-  end 
+  attr_writer :active, :salary, :first, :name 
 
-  # Also a reader method 
-  # def first 
-  # @first 
-  # end 
+  # Both reader/writers on one line 
+  #attr_accessor
+
+  # Argument variables, data passing into the method 
+  def initialize(input) 
+    @first = input[:first] 
+    @last = input[:last] 
+    @salary = input[:salary] 
+    @active = input[:active] 
+  end 
 
   def print_info
     "#{@first} #{@last} makes #{@salary} a year."
@@ -47,15 +49,25 @@ class Employee
   end 
 
   # writer method to change value outside of the class, write method to allow it to happen 
-  def active=(new_val)
-    @active = new_val 
-  end 
+  # def active=(new_val) 
+  #   @active = new_val 
+  # end 
 
 end 
 
 
-employee_1 = Employee.new("Abe", "Kim", 100000, true) 
-employee_2 = Employee.new("Peter", "Gibbons", 60000, true) 
+employee_1 = Employee.new(
+                          "Abe", 
+                          "Kim", 
+                          100000, 
+                          true
+                          ) 
+employee_2 = Employee.new(
+                          "Peter", 
+                          "Gibbons", 
+                          60000, 
+                          true
+                          ) 
 
 p employee_1.active
 p employee_1.active = false 
