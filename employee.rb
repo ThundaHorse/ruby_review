@@ -33,11 +33,11 @@ class Employee
   #attr_accessor
 
   # Argument variables, data passing into the method 
-  def initialize(input) 
-    @first = input[:first] 
-    @last = input[:last] 
-    @salary = input[:salary] 
-    @active = input[:active] 
+  def initialize(input_options) 
+    @first = input_options[:first_name]
+    @last = input_options[:last_name]
+    @salary = input_options[:salary]
+    @active = input_options[:active]
   end 
 
   def print_info
@@ -48,28 +48,45 @@ class Employee
     @salary *= 1.05
   end 
 
-  # writer method to change value outside of the class, write method to allow it to happen 
-  # def active=(new_val) 
-  #   @active = new_val 
-  # end 
+end
+
+class Manager < Employee 
+  def initialize(input_options)
+    super(first_name: input_options[:first_name], salary: input_options[:salay])
+    @employees = input_options[:employees]
+  end 
+
+  def send_report 
+    puts "Sending email" 
+    puts "Email sent" 
+  end 
 
 end 
 
 
+
 employee_1 = Employee.new(
-                          "Abe", 
-                          "Kim", 
-                          100000, 
-                          true
+                          first_name: "Abe", 
+                          last_name: "Kim", 
+                          salary: 100000, 
+                          active: true
                           ) 
+
 employee_2 = Employee.new(
-                          "Peter", 
-                          "Gibbons", 
-                          60000, 
-                          true
+                          first_name: "Peter", 
+                          last_name: "Gibbons", 
+                          salary: 60000, 
+                          active: true
                           ) 
 
-p employee_1.active
-p employee_1.active = false 
-p employee_1.active 
+manager_1 = Manager.new(
+                        first_name: "Abraham",
+                        last_name: "Yeet",
+                        salary: 100000000,
+                        active: true,
+                        employees: [employee_1, employee_2]
+                        )
 
+p employee_2
+p employee_1
+p manager_1
