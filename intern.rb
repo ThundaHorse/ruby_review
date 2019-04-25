@@ -1,14 +1,14 @@
+module Reportable
+  def send_report 
+    puts "Sending email" 
+    puts "Email sent" 
+  end
+end 
+
 class Employee 
-  # Access instances or variables 
-  # Writers overrite an old attribute 
-  # Reader also called getter, writer also called setter 
   attr_reader :first, :last, :salary, :active
   attr_writer :active, :salary, :first, :name 
 
-  # Both reader/writers on one line 
-  #attr_accessor
-
-  # Argument variables, data passing into the method 
   def initialize(input_options) 
     @first = input_options[:first_name]
     @last = input_options[:last_name]
@@ -17,13 +17,12 @@ class Employee
   end 
 
   def print_info
-    "#{@first} #{@last} makes #{@salary} a year."
+    puts "#{@first} #{@last} makes #{@salary} a year."
   end 
 
   def give_annual_raise 
     @salary *= 1.05
   end 
-
 end
 
 class Manager < Employee 
@@ -32,13 +31,12 @@ class Manager < Employee
     @employees = input_options[:employees]
   end 
 
-  def send_report 
-    puts "Sending email" 
-    puts "Email sent" 
-  end 
-
+  include Reportable 
 end 
 
+class Intern < Employee
+  include Reportable
+end 
 
 
 employee_1 = Employee.new(
@@ -63,6 +61,14 @@ manager_1 = Manager.new(
                         employees: [employee_1, employee_2]
                         )
 
-p employee_2
-p employee_1
-p manager_1
+intern = Intern.new(
+                  first_name: "Jam",
+                  last_name: "Jam",
+                  salary: 30000,
+                  active: true
+                  )
+
+employee_2.print_info
+employee_1.print_info
+manager_1.print_info
+intern.print_info
