@@ -1,3 +1,7 @@
+require "./employee.rb"
+require "./manager.rb"
+require "./intern.rb" 
+
 manager = Manager.new(
                       first_name: "Lincoln",
                       last_name: "Osiris",
@@ -16,3 +20,9 @@ employee_2 = Employee.new(
                           last_name: "Portnoy", 
                           salary: 60000, 
                           active: true
+intern = Intern.new(
+                    first_name: "Kevin",
+                    last_name: "Sandusky", 
+                    salary: 10, 
+                    active: true
+                    ) 
