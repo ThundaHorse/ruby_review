@@ -21,31 +21,3 @@ class Manager < Employee
     end 
   end 
 end
-
-
-manager = Manager.new(
-                      first_name: "Leslie",
-                      last_name: "Knope",
-                      salary: 100000,
-                      active: true,
-                      employees: [employee_1, employee_2]
-                      )
-employee_1 = Employee.new(
-                          first_name: "Abe", 
-                          last_name: "Kim", 
-                          salary: 100000, 
-                          active: true
-                          ) 
-employee_2 = Employee.new(
-                          first_name: "Peter", 
-                          last_name: "Gibbons", 
-                          salary: 60000, 
-                          active: true
-                          ) 
-
-p employee_1.active
-p employee_2.active
-manager.fire_all_employees
-p employee_1.active
-p employee_2.active
-
