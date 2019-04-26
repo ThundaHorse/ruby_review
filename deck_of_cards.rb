@@ -7,6 +7,7 @@
 
 class Card 
   def initialize(trivia_data)
+    @trivia_data = trivia_data 
     @answer = [] 
     @question = []
 
@@ -25,8 +26,6 @@ class Deck < Card
   end 
 
   def question 
-    output_q = ''
-    output_a = '' 
     correct_count = 0
 
     i = 0 
@@ -43,11 +42,12 @@ class Deck < Card
       i += 1
     end 
     p "You got #{correct_count} out of 3 correct!" 
-  end  
+  end 
 
   def draw_card 
     @@cards_remainig -= 1 
-    self.question
+    card_drawn = Card.new(@trivia_data)
+    self.question 
   end 
 
   def remaining_cards 
