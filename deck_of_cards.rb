@@ -7,7 +7,6 @@
 
 class Card 
   def initialize(trivia_data)
-    @trivia_data = trivia_data 
     @answer = [] 
     @question = []
 
@@ -19,17 +18,19 @@ class Card
 end 
 
 class Deck < Card 
-  @@cards_remainig = 3 
+  @@cards_remainig = 3
   attr_reader :answer, :question 
   def initialize(trivia_data)
     super 
   end 
 
   def question 
+    output_q = ''
+    output_a = '' 
     correct_count = 0
 
     i = 0 
-    while i < 3 
+    while i < 3
       puts "#{@question[i]}"
       output_a = gets.chomp 
 
@@ -42,11 +43,10 @@ class Deck < Card
       i += 1
     end 
     p "You got #{correct_count} out of 3 correct!" 
-  end 
+  end  
 
   def draw_card 
     @@cards_remainig -= 1 
-    card_drawn = Card.new(@trivia_data)
     self.question 
   end 
 
@@ -65,7 +65,7 @@ deck = Deck.new(trivia_data) # deck is an instance of the Deck class
 
 while deck.remaining_cards > 0
   card = deck.draw_card # card is an instance of the Card class
-  puts card.question
+  # puts card.question
   user_answer = gets.chomp
   if user_answer.downcase == card.answer.downcase
     puts "Correct!"
@@ -74,21 +74,3 @@ while deck.remaining_cards > 0
   end
 end
 
-trivia_data = {
-  "What is the capital of Illinois?" => "Springfield",
-  "Is Africa a country or a continent?" => "Continent",
-  "Tug of war was once an Olympic event. True or false?" => "True"
-}
-
-deck = Deck.new(trivia_data) # deck is an instance of the Deck class
-
-while deck.remaining_cards > 0
-  card = deck.draw_card # card is an instance of the Card class
-  puts card.question
-  user_answer = gets.chomp
-  if user_answer.downcase == card.answer.downcase
-    puts "Correct!"
-  else
-    puts "Incorrect!"
-  end
-end
